@@ -1,0 +1,40 @@
+# Here you can define all the forwarding endpoints that you want your Mollie webhook forwarded to
+
+endpoints:
+    # Each endpoint needs a name, you can use any name you want
+    shop:
+        # The scheme is usually https, http is supported as well
+        scheme: https
+        # The host of the endpoint
+        host: myshop.example.com
+        # Optionally a different port can be defined. If empty, port is inferred from scheme (e.g. 443 for https)
+        port:
+        # The path of the webhook endpoint
+        path: /mollie/webhook
+        # Should query strings (?foo=bar etc.) be preserved? true/false
+        preserve_query: true
+        # Should the original path (e.g. /mollie/webhooks/60b8ce59d9167) be preserved? true/false
+        # It is then appended to the path above, so it might make sense to set path: /
+        preserve_path: true
+        # Which HTTP verb should be used to forward? Most likely this will be POST
+        method: POST
+    erp:
+        scheme: https
+        host: erp-endpoint.example.com
+        port: 8081
+        path: /payment/notification
+        preserve_query: false
+        preserve_path: false
+        method: POST
+        # You can add various http headers to support endpoints that need authentication
+        # or endpoints that rely on the host header (e.g. Traefik)
+        headers:
+            Host: sw6.test
+            X-Asdf: foobar
+    zapier:
+        scheme: http
+        host: zapier-endpoint.myshop.example.com
+        path: /60b8ce59d9167
+        preserve_query: false
+        preserve_path: false
+        method: POST
