@@ -20,7 +20,7 @@ class WebhookController extends AbstractController
      * @param Request $request
      * @param EndpointConfigService $endpointConfigService
      * @param MessageBusInterface $messageBus
-     * @param string|null $slug
+     * @param string $slug
      * @return Response
      * @Route("/{slug}", name="webhook", requirements={"slug"=".+"})
      */
@@ -28,7 +28,7 @@ class WebhookController extends AbstractController
         Request $request,
         EndpointConfigService $endpointConfigService,
         MessageBusInterface $messageBus,
-        string $slug = null
+        string $slug = ''
     ): Response
     {
         $payload = $request->getContent();

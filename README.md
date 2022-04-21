@@ -12,6 +12,7 @@ This is the second iteration of the project, the [first one](https://github.com/
 * Some recent version of PHP (8.1 or newer should do) with `ext-amqp` if you wanna use the default RabbitMQ configuration.
 * A web server that allows URL rewrites
 * Optionally, but highly recommended: Either a RabbitMQ or Redis Server that can serve as a transport for the [Symfony Messenger](https://symfony.com/doc/current/messenger.html). In the default configuration we expect a RabbitMQ at `localhost:5672`. You can (and should) reconfigure `config/packages/messenger.yaml` to suit your needs. See the [docs for Symfony Messenger](https://symfony.com/doc/current/messenger.html#transport-configuration) to see what you can do.
+* Optionally, for local testing: Docker to run a RabbitMQ server.
 
 ## Install the Application locally
 
@@ -20,11 +21,15 @@ This is the second iteration of the project, the [first one](https://github.com/
 * `composer install`
 * `cp endoints.neon.dist endpoints.neon`
 * Edit `endpoints.neon` to your needs
+* Ensure that `.env` is configured correctly
 * Serve, e.g. using the `symfony` CLI tool: `symfony server:start`
+* Spin up a quick RabbitMQ: `docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management`
 
-You can test the application by posting a `x-www-form-urlencoded` POST request with `id=tr_12345` as payload to `http://localhost:8000/webhook` (or wherever you run the application).
+You can then test the application by posting a `x-www-form-urlencoded` POST request with `id=tr_12345` as payload to `http://localhost:8000/webhook` (or wherever you run the application).
 
-To consume the queued up webhooks and forward them to the configured endpoints, you'd need to spin up a [worker](https://symfony.com/doc/current/messenger.html#consuming-messages-running-the-worker).
+To consume the queued up webhooks and forward them to the configured endpoints, you'd need to spin up a [worker](https://symfony.com/doc/current/messenger.html#consuming-messages-running-the-worker):
+
+`php bin/console messenger:consume async -vv`
 
 When deploying in production, observe the [hints](https://symfony.com/doc/current/messenger.html#deploying-to-production) in the Symfony docs about running the workers.
 
