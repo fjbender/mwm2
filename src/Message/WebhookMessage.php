@@ -15,11 +15,6 @@ class WebhookMessage
     {
     }
 
-    public function getContent(): Uri
-    {
-        return $this->uri;
-    }
-
     public function getMethod(): string
     {
         return $this->method;
