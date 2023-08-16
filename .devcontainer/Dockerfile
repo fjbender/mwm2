@@ -12,7 +12,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Install php-amqp
 
-ENV EXT_AMQP_VERSION=master
+ENV EXT_AMQP_VERSION=latest
 
 RUN docker-php-source extract \
     && git clone --branch $EXT_AMQP_VERSION --depth 1 https://github.com/php-amqp/php-amqp.git /usr/src/php/ext/amqp \
