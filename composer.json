@@ -9,16 +9,15 @@
         "ext-iconv": "*",
         "nette/neon": "^3.3",
         "nyholm/psr7": "^1.5",
-        "sensio/framework-extra-bundle": "^6.2",
-        "symfony/amqp-messenger": "6.0.*",
-        "symfony/console": "6.0.*",
-        "symfony/dotenv": "6.0.*",
+        "symfony/amqp-messenger": "*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
         "symfony/flex": "^2",
-        "symfony/framework-bundle": "6.0.*",
-        "symfony/http-client": "6.0.*",
-        "symfony/messenger": "6.0.*",
-        "symfony/runtime": "6.4.*",
-        "symfony/yaml": "6.0.*"
+        "symfony/framework-bundle": "*",
+        "symfony/http-client": "*",
+        "symfony/messenger": "*",
+        "symfony/runtime": "*",
+        "symfony/yaml": "*"
     },
     "config": {
         "allow-plugins": {
@@ -68,7 +67,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.0.*"
+            "require": "7.3.*"
         }
     }
 }
